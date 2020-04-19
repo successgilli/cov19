@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "overrides": [
+        {
+          "files": ["bin/*.js", "lib/*.js"],
+          "excludedFiles": "config/*.js",
+          "rules": {
+            "quotes": ["error", "single"]
+          }
+        }
+      ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
+}
