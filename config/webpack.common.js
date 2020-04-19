@@ -41,12 +41,34 @@ module.exports = {
             },
             {
                 test: /\.(css|scss|saas)$/i,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: ['style-loader', {
+                    loader: 'css-loader',
+                    options: {
+                        url: true
+                    }
+                }, 'sass-loader']
             },
+            {
+                test: /\.(png|jpe?g|gif|svg|ttf)$/i,
+                use: [
+                  {
+                    loader: 'file-loader',
+                  },
+                ],
+            }
         ],
     },
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, '../build'),
     },
+    resolve: {
+        alias: {
+            Components: path.resolve(__dirname, '../src/components/'),
+            Containers: path.resolve(__dirname, '../src/containers/'),
+            Images: path.resolve(__dirname, '../src/assets/img/'),
+            Fonts: path.resolve(__dirname, '../src/assets/font/')
+          },
+          extensions: ['.wasm', '.mjs', '.js', '.json', '.jsx', '.svg', '.ttf']
+    }
 };

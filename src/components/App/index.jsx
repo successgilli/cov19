@@ -1,9 +1,9 @@
 import React from 'react';
 
+import Home from 'Containers/Home/index';
+
 import './index.scss';
 
-const App = () => {
-    return <h1>Home Page</h1>
-};
+const App = () => <Home />;
 
 export default App;

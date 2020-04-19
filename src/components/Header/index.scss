@@ -1,0 +1,44 @@
+@font-face{
+font-family: AvenirNomal;
+src: url('../../assets/font/AvenirNextCyr/AvenirNextCyr-Regular.ttf');
+}
+
+.header{
+    background: #222222;
+    border: 1px solid rgba(214, 214, 214, 0.2);
+    box-sizing: border-box;
+    width: 100%;
+    height: 3.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_badge{
+        flex-basis: 10%;
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+    }
+    &_text{
+        flex-basis: 80%;
+        font-family: AvenirNomal;
+        color: #FFFFFF;
+        padding-left: 2px;
+    }
+    &_buggar{
+        flex-basis: 10%;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    @media(max-width: 600px){
+        &_text{
+            font-size: 0.8rem;
+            padding-left: 15px;
+        }
+        &_badge{
+            padding-left: 10px;
+        }
+    }
+}
+
