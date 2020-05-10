@@ -1,0 +1,16 @@
+.place {
+  padding: 0.3rem;
+  font-size: 1rem;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid #5c5c5c;
+}
+.place_elem {
+  margin-right: 0.3rem;
+}
+.place:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,19 @@
+.entityBucket{
+    background-color: #222222;
+    border: 1px solid rgba(214, 214, 214, 0.2);
+    width: 100%;
+    box-sizing: border-box;
+    &_mainTitle, &_title, &_count {
+        text-align: center;
+        margin: 0;
+        margin-bottom: 0.3rem;
+    }
+    &_count{
+        font-size: 2rem;
+    }
+    &_content{
+       
+        max-height: 62vh;
+        overflow-y: auto;
+    }
+}

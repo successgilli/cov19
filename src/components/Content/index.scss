@@ -1,0 +1,22 @@
+.content{
+    margin-top: 0.7rem;
+    max-height: 85vh;
+    display: flex;
+    &_1{
+        // background-color: red;
+        flex-basis: 15%;
+        
+    }
+    &_2{
+        box-sizing: border-box;
+        flex-basis: 50%;
+        margin-right: 0.7rem;
+        margin-left: 0.7rem;
+        
+    }
+    &_3{
+        background-color: white;
+        flex-basis: 35%;
+        
+    }
+}
