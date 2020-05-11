@@ -1,6 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+dotenv.config();
+
 module.exports = {
     entry: {
         app: './src/index.jsx',
@@ -12,6 +17,9 @@ module.exports = {
             title: 'Production',
             template: './src/index.html'
         }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(process.env)
+          })
     ],
     module: {
         rules: [
@@ -27,7 +35,8 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env", "@babel/preset-react"]
+                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                        plugins: ["@babel/plugin-transform-runtime"]
                     }
                 }
             },

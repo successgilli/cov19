@@ -1,5 +1,8 @@
 import React from 'react';
 import Proptypes from 'proptypes';
+import { connect } from 'react-redux';
+
+import { initiateClick } from '../../store/modules/place/index';
 
 import './index.scss';
 
@@ -10,8 +13,9 @@ const Place = ({
   text4,
   colorArray,
   details,
+  initiateClick: updatePlaceInStore,
 }) => {
-  const handleClick = () => console.log(details);
+  const handleClick = () => updatePlaceInStore(details);
 
   return (
     <button type="button" className="place" onClick={handleClick}>
@@ -50,6 +54,7 @@ Place.propTypes = {
   text4: Proptypes.string,
   colorArray: Proptypes.shape([]),
   details: Proptypes.shape({}).isRequired,
+  initiateClick: Proptypes.func.isRequired,
 };
 
 Place.defaultProps = {
@@ -60,4 +65,8 @@ Place.defaultProps = {
   colorArray: [],
 };
 
-export default Place;
+const mapStateToProps = (state) => (
+  { placeReducer: state.placeReducer }
+);
+
+export default connect(mapStateToProps, { initiateClick })(Place);
