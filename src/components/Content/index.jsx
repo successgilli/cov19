@@ -1,71 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import Proptypes from 'proptypes';
 
 import TotalContent from 'Components/TotalHead/index';
 import EntityBucket from 'Components/EntityBucket/index';
 import DragDropContainer from 'Components/DragDropContainer/index';
 
 import './index.scss';
+import { getCovidResults } from '../../store/modules/place';
+import countrySortFunc from '../../util/helpers/countryUtil';
 
-const Content = () => {
+const Content = ({ countryList, covidPlaces: { countries, states } }) => {
+  useEffect(() => {
+    countryList();
+  }, []);
+
   const style = { color: '#D6D6D6' };
-  const elemsForConfirmed = [
-    {
-      text1: '12,34432',
-      text2: 'US',
-      details: {
-        name: 'US', confirmed: '12,34432', recovered: '12,34432', deaths: '12,34432',
-      },
-    },
-    {
-      text1: '12,34432',
-      text2: 'New York',
-      details: {
-        name: 'New York', confirmed: '12,34432', recovered: '12,34432', deaths: '12,34432',
-      },
-    },
-    {
-      text1: '12,34432',
-      text2: 'Nigeria',
-      details: {
-        name: 'Nigeria', confirmed: '12,34432', recovered: '12,34432', deaths: '12,34432',
-      },
-    },
-    {
-      text1: '12,34432',
-      text2: 'Ghana',
-      details: {
-        name: 'Ghana', confirmed: '12,34432', recovered: '12,34432', deaths: '12,34432',
-      },
-    },
-    {
-      text1: '12,34432',
-      text2: 'China',
-      details: {
-        name: 'China', confirmed: '12,34432', recovered: '12,34432', deaths: '12,34432',
-      },
-    },
-    {
-      text1: '12,34432',
-      text2: 'Italy',
-      details: {
-        name: 'Italy', confirmed: '12,34432', recovered: '12,34432', deaths: '12,34432',
-      },
-    },
-    {
-      text1: '12,34432',
-      text2: 'Spain',
-      details: {
-        name: 'Spain', confirmed: '12,34432', recovered: '12,34432', deaths: '12,34432',
-      },
-    },
-    {
-      text1: '12,34432',
-      text2: 'united Kingdom',
-      details: {
-        name: 'united Kingdom', confirmed: '12,34432', recovered: '12,34432', deaths: '12,34432',
-      },
-    },
-  ];
+
+  const elemsForConfirmed = countrySortFunc(countries, 'TotalConfirmed');
+  const elemsForDeath = countrySortFunc(countries, 'TotalDeaths', 2);
+  const elemsForStates = countrySortFunc(states, 'TotalDeaths', 3);
 
   return (
     <div className="content">
@@ -81,9 +35,36 @@ const Content = () => {
       <div className="content_2">
         <DragDropContainer />
       </div>
-      <div className="content_3" />
+      <div className="content_3">
+        <div className="content_1">
+          <TotalContent style={{ color: 'white' }} title="Global Deaths" count="546,232" />
+          <EntityBucket
+            style={style}
+            elems={elemsForDeath}
+            elemColor={['white', '#D6D6D6', 'grey']}
+          />
+        </div>
+        <div className="content_1">
+          <TotalContent style={{ color: 'white' }} title="Nigeria state level" count="546,232" />
+          <EntityBucket
+            style={style}
+            elems={elemsForStates}
+            elemColor={['white', 'green', 'white', '#D6D6D6']}
+          />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Content;
+Content.propTypes = {
+  countryList: Proptypes.shape([]).isRequired,
+  covidPlaces: Proptypes.shape({
+    countries: Proptypes.shape([]),
+    states: Proptypes.shape([]),
+  }).isRequired,
+};
+
+const mapStateToProps = (state) => ({ covidPlaces: state.placeReducer });
+
+export default connect(mapStateToProps, { countryList: getCovidResults })(Content);

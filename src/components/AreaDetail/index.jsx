@@ -35,21 +35,21 @@ const AreaDetail = ({
           Confirmed:
           <span className="areaDetails_confirmed">
             {' '}
-            {confirmed}
+            {confirmed.toLocaleString()}
           </span>
         </p>
         <p className="areaDetails_item">
           Recovered:
           <span className="areaDetails_recovered">
             {' '}
-            {recovered}
+            {recovered.toLocaleString()}
           </span>
         </p>
         <p className="areaDetails_item">
           Deaths:
           <span className="areaDetails_deaths">
             {' '}
-            {deaths}
+            {deaths.toLocaleString()}
           </span>
         </p>
       </div>
