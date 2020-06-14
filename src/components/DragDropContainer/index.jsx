@@ -16,17 +16,17 @@ const DragDropContainer = ({
   }, [details]);
 
   const areaElems = areas.map(({
-    name,
-    confirmed,
-    recovered,
-    deaths,
+    Country,
+    TotalConfirmed,
+    TotalRecovered,
+    TotalDeaths,
   }) => (
     <AreaDetails
-      key={name}
-      name={name}
-      confirmed={confirmed}
-      recovered={recovered}
-      deaths={deaths}
+      key={Country}
+      name={Country}
+      confirmed={TotalConfirmed}
+      recovered={TotalRecovered}
+      deaths={TotalDeaths}
     />
   ));
 
