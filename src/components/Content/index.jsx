@@ -24,8 +24,9 @@ const Content = ({ countryList, covidPlaces: { countries, states } }) => {
   return (
     <div className="content">
       <div className="content_1">
-        <TotalContent title="Total Confirmed" count="546,232" />
+        <TotalContent name="bucket1" title="Total Confirmed" count="546,232" />
         <EntityBucket
+          name="bucket1"
           title="Confirmed Cases by Country/Region/Sovereignty"
           style={style}
           elems={elemsForConfirmed}
@@ -36,17 +37,29 @@ const Content = ({ countryList, covidPlaces: { countries, states } }) => {
         <DragDropContainer />
       </div>
       <div className="content_3">
-        <div className="content_1">
-          <TotalContent style={{ color: 'white' }} title="Global Deaths" count="546,232" />
+        <div className="content_31">
+          <TotalContent
+            style={{ color: 'white' }}
+            title="Global Deaths"
+            count="546,232"
+            name="bucket2"
+          />
           <EntityBucket
+            name="bucket2"
             style={style}
             elems={elemsForDeath}
             elemColor={['white', '#D6D6D6', 'grey']}
           />
         </div>
-        <div className="content_1">
-          <TotalContent style={{ color: 'white' }} title="Nigeria state level" count="546,232" />
+        <div className="content_31">
+          <TotalContent
+            style={{ color: 'white' }}
+            title="Nigeria state level"
+            count="546,232"
+            name="bucket3"
+          />
           <EntityBucket
+            name="bucket3"
             style={style}
             elems={elemsForStates}
             elemColor={['white', 'green', 'white', '#D6D6D6']}

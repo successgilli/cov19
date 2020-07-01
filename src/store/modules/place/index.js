@@ -24,7 +24,6 @@ export const closeDetail = (payload) => ({ type: INITIATE_CLOSE, payload });
 export const getCovidResults = (payload) => ({ type: HANDLE_PLACES, payload });
 
 function* workerSaga(action) {
-  console.log(action, ' ==> selection');
   yield put(updateSelectedAreas(action.payload));
 }
 
@@ -36,7 +35,6 @@ function* covidWorker() {
   const resultLIst = yield call(fetchCovidReport);
   const stateResult = yield call(fetchStateReport);
 
-  console.log(stateResult, ' ==> state list');
   yield put(addCountriesToState(resultLIst.Countries));
   yield put(addStates(stateResult));
 }

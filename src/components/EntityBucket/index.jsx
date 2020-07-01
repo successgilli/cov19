@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Proptypes from 'proptypes';
+import { connect } from 'react-redux';
 
 import Place from 'Components/Place/index';
 
@@ -12,6 +13,8 @@ const EntityBucket = ({
   elems,
   style,
   elemColor,
+  name,
+  bucketState,
 }) => {
   const elements = elems.map(({
     text1, text2, text3, text4, details,
@@ -25,9 +28,14 @@ const EntityBucket = ({
       details={details}
     />
   ));
+  const [styleMax, setstyleMax] = useState({});
+
+  useEffect(() => {
+    setstyleMax({ maxHeight: bucketState[name] ? '0px' : '100%' });
+  }, [bucketState[name]]);
 
   return (
-    <div className="entityBucket">
+    <div name={name} style={styleMax} className="entityBucket">
       <p className="entityBucket_mainTitle" style={{ ...style }}>{mainTitle}</p>
       <p className="entityBucket_title" style={{ ...style }}>{title}</p>
       <p className="entityBucket_count" style={{ ...style }}>{count}</p>
@@ -44,6 +52,8 @@ EntityBucket.propTypes = {
   mainTitle: Proptypes.string,
   count: Proptypes.string,
   style: Proptypes.shape({}),
+  name: Proptypes.string,
+  bucketState: Proptypes.shape({}).isRequired,
   elemColor: Proptypes.shape([]).isRequired,
 };
 
@@ -52,6 +62,9 @@ EntityBucket.defaultProps = {
   title: '',
   count: '',
   style: {},
+  name: '',
 };
 
-export default EntityBucket;
+const mapStateToProps = (state) => ({ bucketState: state.bucketReducer });
+
+export default connect(mapStateToProps, null)(EntityBucket);
