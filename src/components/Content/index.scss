@@ -3,21 +3,34 @@
     max-height: 85vh;
     display: flex;
     &_1{
-        // background-color: red;
         flex-basis: 15%;
-        
+    }
+    &_31{
+        flex-basis: 48%;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     &_2{
         box-sizing: border-box;
         flex-basis: 50%;
         margin-right: 0.7rem;
         margin-left: 0.7rem;
-        
+        @media (max-width: 917px){
+            display: none;
+          } 
     }
     &_3{
-        background-color: white;
         flex-basis: 35%;
         display: flex;
         justify-content: space-around;
+        @media (max-width: 917px){
+            flex-direction: column;
+            margin-top: 20px;
+          }
     }
+
+    @media (max-width: 917px){
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
 }
